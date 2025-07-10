@@ -12,3 +12,32 @@ export const calculator = {
   divide: (a, b) => a / b,
   multiply: (a, b) => a * b,
 };
+
+function isPunc(element) {
+  return /[^\w\s]/.test(element);
+}
+
+export function caesarCipher(sentence, key) {
+  const lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
+  const upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  let chars = sentence.split("").map((element) => {
+    if (isPunc(element) || element == " ") {
+      return element;
+    }
+
+    if (lowerAlphabet.includes(element)) {
+      let index = lowerAlphabet.indexOf(element);
+      index = (index + key + 26) % 26;
+      return lowerAlphabet.at(index);
+    }
+
+    if (upperAlphabet.includes(element)) {
+      let index = upperAlphabet.indexOf(element);
+      index = (index + key + 26) % 26;
+      return upperAlphabet.at(index);
+    }
+  });
+
+  return chars.join("");
+}
