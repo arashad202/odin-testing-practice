@@ -41,3 +41,35 @@ export function caesarCipher(sentence, key) {
 
   return chars.join("");
 }
+
+export function analyzeArray(array) {
+  const sum = array.reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+
+  const length = array.length;
+  const average = sum / length;
+  const min = array.reduce((acc, curr) => {
+    if (curr < acc) {
+      return curr;
+    } else {
+      return acc;
+    }
+  });
+  const max = array.reduce((acc, curr) => {
+    if (curr > acc) {
+      return curr;
+    } else {
+      return acc;
+    }
+  });
+
+  return {
+    average,
+    min,
+    max,
+    length,
+  };
+}
+
+console.log(analyzeArray([1, 8, 3, 4, 2, 6]));
